@@ -1,0 +1,4 @@
+geomdl==5.4.0
+matplotlib==3.11.0
+numpy==2.4.6
+streamlit==1.58.0
