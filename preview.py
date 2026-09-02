@@ -19,7 +19,7 @@ def parse_args():
     return parser.parse_args()
 
 
-def plot_elements_on_axis(axis, main_module, elements):
+def plot_elements_on_axis(axis, elements):
     plotters = {
         "line": main_curve.plot_line,
         "arc": main_curve.plot_arc,
@@ -65,7 +65,7 @@ def main():
         seed, elements = result
         print(f"shape {shape_index}, seed={seed}")
         main_curve.print_elements(elements)
-        plot_elements_on_axis(axis, main, elements)
+        plot_elements_on_axis(axis, elements)
         axis.set_title(str(shape_index), fontsize=7, pad=1)
         axis.text(
             0.5,
