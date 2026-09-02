@@ -45,9 +45,6 @@ def generate_mixed_curve_once():
     for index in random.sample(arc_candidates, arc_count):
         elements[index] = generate_arc(elements[index]["start"], elements[index]["end"])
 
-    elements = insert_local_splines(elements, complexity)
-    elements = enforce_spline_ratio_limit(elements)
-
     return elements, complexity
 
 def generate_mixed_curve(max_elements=MAX_ELEMENTS):
@@ -59,10 +56,16 @@ def generate_mixed_curve(max_elements=MAX_ELEMENTS):
             continue
 
         sampled_outer = elements_to_polygon(outer_elements)
-        if len(sampled_outer) < 3:
-            continue
 
         hole_elements = generate_hole_elements(sampled_outer, complexity)
+
+        outer_elements = insert_local_splines(outer_elements, complexity)
+        outer_elements = enforce_spline_ratio_limit(outer_elements)
+
+        sampled_outer = elements_to_polygon(outer_elements)
+        if hole_elements and not hole_elements_inside(hole_elements, sampled_outer):
+            continue
+
         elements = outer_elements + hole_elements
         if len(elements) > max_elements:
             continue
