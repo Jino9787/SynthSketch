@@ -25,7 +25,7 @@ Options:
 --workers       Maximum number of parallel processes (default: 8)
 --output-dir    Output directory (default: npy_outputs)
 --folder-size   Files per subfolder (default: 10000)
---overwrite     Replace existing files
+--overwrite     Replace existing files (default: no)
 ```
 
 ### `preview.py`
